@@ -1,4 +1,4 @@
-package org.choongang.entities;
+package org.choongang.commons.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -12,7 +12,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 // 공통으로 사용할 속성 - 추상 클래스
-@Getter @Setter
+@Getter
+@Setter
 @MappedSuperclass // 부모 클래스가 가지는 칼럼만 자식 클래스에게 매핑정보로 제공하고 싶을 때
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Base {

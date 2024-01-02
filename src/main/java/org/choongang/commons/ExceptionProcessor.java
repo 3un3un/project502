@@ -1,4 +1,5 @@
-package org.choongang.controllers;
+package org.choongang.commons;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -7,10 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-public class CommonController {
-
+// 에러 페이지 인터페이스
+public interface ExceptionProcessor {
     @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception e, HttpServletResponse response, HttpServletRequest request, Model model) {
+    default String errorHandler(Exception e, HttpServletResponse response, HttpServletRequest request, Model model) {
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500번을 기본값으로 정하기
         if(e instanceof CommonException) {
@@ -28,4 +29,6 @@ public class CommonController {
 
         return "error/common";
     }
+
+
 }

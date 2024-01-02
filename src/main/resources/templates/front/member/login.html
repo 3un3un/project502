@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{로그인}"></h1>
+    <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off">
+        <!-- 로그인 성공 후 쿼리스트링으로 이동할 url 받아서 이동하도록-->
+        <input type="hidden" name="redirectURL" th:if="${param.redirectURL != null}"
+        th:value="${param.redirectURL}">
+        <dl>
+            <dt th:text="#{아이디}"></dt>
+                <dd>                                    <!-- 로그인 실패 시 아이디 남기기 -->
+                    <input type="text" name="username" th:value="${session.username}">
+                    <!-- LoginFailureHandler에서 usenname 비어 있으면
+                    Utils.getMessage("NotBlank.userId")로 에러 메세지 가져와서 session에 저장-->
+                    <div class="error" th:if="${session.NotBlank_username != null}"
+                    th:text="${session.NotBlank_username}"></div>
+                </dd>
+        </dl>
+
+        <dl>
+            <dt th:text="#{비밀번호}"></dt>
+
+            <dd>
+                <input type="password" name="password">
+                <div class="error" th:if="${session.NotBlank_password != null}"
+                     th:text="${session.NotBlank_password}"></div>
+            </dd>
+
+        </dl>
+        <button type="submit" th:text="#{로그인}"></button>
+
+        <div class="error" th:if="${session.Global_error} != null"
+             th:text="${session.Global_error}"></div>
+
+    </form>
+</main>
+
+
+
+</html>
