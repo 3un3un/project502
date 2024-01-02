@@ -1,19 +1,15 @@
-package org.choongang.restControllers;
+package org.choongang.commons;
 
 import org.choongang.commons.exceptions.CommonException;
 import org.choongang.commons.rests.JSONData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
-// JSON 형식으로 응답코드
-@RestControllerAdvice("org.choongang.restcontrollers")
-public class RestCommonController {
+public interface ExceptionRestProcessor {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<JSONData<Object>> errorHandler(Exception e) {
+    default ResponseEntity<JSONData<Object>> errorHandler(Exception e) {
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500
         if(e instanceof CommonException) {
@@ -29,6 +25,4 @@ public class RestCommonController {
 
         return ResponseEntity.status(status).body(data);
     }
-
-
 }
