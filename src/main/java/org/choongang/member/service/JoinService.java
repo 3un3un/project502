@@ -1,10 +1,14 @@
 package org.choongang.member.service;
 
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.choongang.member.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
+import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.AuthoritiesRepository;
 import org.choongang.member.repositories.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,11 +16,14 @@ import org.springframework.validation.Errors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class JoinService {
 
     private final MemberRepository memberRepository;
     private final JoinValidator validator;
     private final PasswordEncoder encoder;
+    private final AuthoritiesRepository authoritiesRepository;
+
 
 
     // 커맨드 객체일 때
@@ -42,6 +49,12 @@ public class JoinService {
         member.setUserId(form.getUserId());
 
         process(member);
+
+        // 회원 가입시에는 일반 사용자 권한 부여(USER)
+        Authorities authorities = new Authorities();
+        authorities.setMember(member);
+        authorities.setAuthority(Authority.USER);
+        authoritiesRepository.saveAndFlush(authorities);
 
     }
 
