@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{front/layouts/main}">
+      layout:decorate="~{mobile/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{회원가입}"></h1>
     <!-- 자동 완성 off -->
@@ -43,7 +43,7 @@
 
 
         <div th:text="#{회원가입_약관}"></div>
-        <div class="terms">약관...</div>
+        <div class="terms" th:utext="${@utils.nl2br(siteConfig.joinTerms)}"></div>
         <div class="terms_agree">
             <input type="checkbox" name="agree" value="true" id="agree"
                    th:field="*{agree}">

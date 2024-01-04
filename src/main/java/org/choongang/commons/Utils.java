@@ -68,8 +68,23 @@ public class Utils {
 
     }
 
+
     public static String getMessage(String code) {
         return getMessage(code, null);
+    }
+
+
+    /**
+     * \n 또는 \r\n (줄개행 문자) -> <br> 태그로
+     * @param str
+     * @return
+     */
+    // 줄개행 문자  <br> 태그로 변경하는 기능
+    public String nl2br(String str) {
+        str = str.replaceAll("\\n", "<br>")
+                .replaceAll("\\r", "");
+        return str;
+
     }
 
 }
