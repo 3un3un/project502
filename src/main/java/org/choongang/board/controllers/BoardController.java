@@ -20,12 +20,14 @@ public class BoardController {
     @GetMapping("/test")
     public void test() {
         BoardData data = boardDataRepository.findById(1L).orElse(null);
-        data.setSubject("(수정)제목");
-        boardDataRepository.saveAndFlush(data);
+       data.setSubject("(수정)제목");
+
 /*        BoardData data = new BoardData();
         data.setSubject("제목");
         data.setContent("내용");
-        boardDataRepository.saveAndFlush(data);*/
+*/
+
+        boardDataRepository.saveAndFlush(data);
 
     }
     @GetMapping("/test2")

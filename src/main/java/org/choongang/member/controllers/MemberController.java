@@ -5,11 +5,15 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ExceptionProcessor;
 import org.choongang.commons.Utils;
 import org.choongang.member.MemberUtil;
-import org.choongang.member.entities.Member;
 import org.choongang.member.service.JoinService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -23,32 +27,51 @@ public class MemberController implements ExceptionProcessor {
     private final MemberUtil memberUtil;
 
     @GetMapping("/join")
-    public String join(@ModelAttribute RequestJoin form) {
+    public String join(@ModelAttribute RequestJoin form, Model model) {
+        commonProcess("join", model);
 
-
-        // 모바일여부 체크 후 이동
         return utils.tpl("member/join");
     }
 
+
+
+
     @PostMapping("/join")
-    public String joinPs(@Valid RequestJoin form, Errors errors) {
+    public String joinPs(@Valid RequestJoin form, Errors errors,Model model) {
+        commonProcess("join", model);
 
         // joinValidator.validate(form, errors);
         joinService.process(form, errors);
 
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return utils.tpl("member/join");
         }
 
-        return "redirect:/member/login";
 
+        return "redirect:/member/login";
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        commonProcess("login", model);
 
-        return utils.tpl("/member/login");
+        return utils.tpl("member/login");
     }
+
+
+    // 모드 값에 따라 공통 처리하기
+    // ex) GET: join POST: join = 같은 모드
+    private void commonProcess(String mode, Model model) {
+        mode = StringUtils.hasText(mode) ? mode : "join";
+        String pageTitle = Utils.getMessage("회원가입", "commons");
+        if (mode.equals("login")) {
+            pageTitle = Utils.getMessage("로그인", "commons");
+        }
+
+        model.addAttribute("pageTitle", pageTitle);
+    }
+
+
 
 /*  1번 Principal
     @ResponseBody
@@ -78,7 +101,7 @@ public class MemberController implements ExceptionProcessor {
         System.out.println("memberInfo = " + memberInfo);
     }*/
 
-    @ResponseBody
+/*    @ResponseBody
     @GetMapping("/info")
     public void info() {
         if(memberUtil.isLogin()) {
@@ -87,7 +110,7 @@ public class MemberController implements ExceptionProcessor {
         } else {
             System.out.println("미로그인 상태...");
         }
-    }
+    }*/
 
 
 }
