@@ -11,7 +11,8 @@ spring:
   # 데이터베이스 설정
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:xe
+    url: jdbc:oracle:thin:@13.124.196.150:1521:xe
+    # url: jdbc:oracle:thin:@localhost:1521:xe
     username: PROJECT
     password: _aA123456
 
@@ -45,5 +46,6 @@ logging:
 # 파일 업로드 경로 설정
 file:
   upload:
-    path: /home/project/uploads/
+    path: /home/ubuntu/uploads/
+    # path: /home/project/uploads/
     url: /uploads/

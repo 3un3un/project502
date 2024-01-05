@@ -2,6 +2,7 @@ package org.choongang.member;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,19 @@ import org.springframework.stereotype.Component;
 public class MemberUtil {
 
     private final HttpSession session;
+
+    // 관리자 여부 체크
+    public boolean isAdmin(){
+        // 로그인 O
+        if(isLogin()) {
+            return getMember().getAuthorities()
+                    .stream().map(Authorities::getAuthority)
+                    .anyMatch(a -> a == Authority.ADMIN || a == Authority.MANAGER); // 한 개라도 매치되면
+        }
+
+        return false;
+
+    }
 
     public boolean isLogin() {
         return getMember() != null;
@@ -28,6 +42,10 @@ public class MemberUtil {
         session.removeAttribute("NotBlank_password");
         session.removeAttribute("Global_error");
     }
+
+
+
+
 
 
 
