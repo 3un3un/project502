@@ -3,9 +3,13 @@ package org.choongang.commons;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.config.controllers.BasicConfig;
+import org.choongang.file.service.FileInfoService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -15,6 +19,10 @@ public class Utils {
     private final HttpServletRequest request;
 
     private final HttpSession session;
+
+    private final FileInfoService fileInfoService;
+
+
 
     private static final ResourceBundle commonsBundle;
     private static final ResourceBundle validatiosnBundle;
@@ -84,7 +92,54 @@ public class Utils {
         str = str.replaceAll("\\n", "<br>")
                 .replaceAll("\\r", "");
         return str;
+    }
 
+    /**
+     * 썸네일 이미지 사이즈 설정
+     *
+     * @return
+     */
+    public List<int[]> getThumbsSize() {
+        BasicConfig config = (BasicConfig) request.getAttribute("siteConfig");
+        String thumbSize = config.getThumbSize();
+        String[] thumbsSize = thumbSize.split("\\n"); // 자르기
+
+/*        Arrays.stream(thumbsSize).map(s -> s.replaceAll("\\r", ""))
+                .map(s -> s.toUpperCase().split("X"));*/
+
+        List<int[]> data = Arrays.stream(thumbsSize)
+                .filter(StringUtils::hasText) // 공백 제거
+                .map(s -> s.replaceAll("\\s+", ""))
+                .map(this::toConvert).toList();
+
+        return data;
+    }
+
+    private int[] toConvert(String size) {
+
+        size = size.trim(); // 공백 제거
+
+        int[] data = Arrays.stream(size.replaceAll("\\r", "")
+                .toUpperCase().split("X"))
+                .mapToInt(Integer::parseInt).toArray();
+
+        return data;
+    }
+
+    // 썸네일 이미지 태그 출력 -> 타임리프
+    public String printThumb(long seq, int width, int height, String className) {
+        String[] data = fileInfoService.getThumb(seq, width, height);
+        if (data != null) {
+         String cls = StringUtils.hasText(className) ? " class'" + className + "'" : "";
+         String image = String.format("<img src='%s'%s>", data[1], cls);
+         return image;
+        }
+        return "";
+
+    }
+
+    public String printThumb(long seq, int width, int height) {
+        return printThumb(seq, width, height, null);
     }
 
 }
