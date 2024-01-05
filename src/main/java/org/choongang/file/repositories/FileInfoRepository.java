@@ -7,7 +7,4 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 // DAO
 public interface FileInfoRepository extends JpaRepository<FileInfo, Long>
         , QuerydslPredicateExecutor<FileInfo> {
-
-
-
 }

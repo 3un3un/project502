@@ -43,6 +43,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(c -> {
             // 일부 페이지 허용 x
             c.requestMatchers("/mypage/**").authenticated() // 회원 전용
+                    .requestMatchers("/member/login", "/member/join").anonymous()
                     //.requestMatchers("/admin/**")
                     //.hasAnyAuthority("ADMIN", "MANAGER")
                     .anyRequest().permitAll(); // 그외 모든 페이지는 모두 접근 가능
@@ -59,6 +60,8 @@ public class SecurityConfig {
                 if(URL.indexOf("/admin") != -1) { // 관리자 페이지일 때
                     // 응답코드 401(권한 없음)
                     res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                } else if (URL.indexOf("/member/login") != -1 || URL.indexOf("/member/join") != -1) {
+                    res.sendRedirect(req.getContextPath() + "/");
                 } else { // 회원전용 페이지
                     res.sendRedirect(req.getContextPath() + "/member/login");
 
