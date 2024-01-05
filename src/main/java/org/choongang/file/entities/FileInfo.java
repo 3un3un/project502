@@ -34,11 +34,4 @@ public class FileInfo extends BaseMember {
 
     private boolean done;
 
-
-
-
-
-
-
-
 }
