@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Component
@@ -89,8 +90,11 @@ public class Utils {
      */
     // 줄개행 문자  <br> 태그로 변경하는 기능
     public String nl2br(String str) {
+        str = Objects.requireNonNull(str, "");
+
         str = str.replaceAll("\\n", "<br>")
                 .replaceAll("\\r", "");
+
         return str;
     }
 

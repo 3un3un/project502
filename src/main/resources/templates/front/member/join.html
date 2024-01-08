@@ -7,6 +7,7 @@
                                                                 <!-- 자동 완성 off -->
     <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off"
     th:object="${requestJoin}">
+        <input type="hidden" name="gid" th:field="*{gid}"> <!-- 프로필 -->
         <div class="error global" th:each="err : ${#fields.globalErrors()}"
              th:text="${err}"></div>
 
@@ -54,6 +55,16 @@
                      th:text="${err}"></div>
             </dd>
         </dl>
+
+        <!-- 프로필 -->
+        <dl>
+            <dt th:text="#{프로필_이미지}"></dt>
+            <dd>
+                <button type="button" class="upload_files"
+                        th:text="#{이미지_업로드}"></button>
+            </dd>
+        </dl>
+        <!-- 프로필 끝 -->
 
         <div th:text="#{회원가입_약관}"></div>
         <div class="terms" th:utext="${@utils.nl2br(siteConfig.joinTerms)}"></div>
