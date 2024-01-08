@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form">
+    <h2>기본 설정</h2>
+    <table class="table_cols mb30">
+        <tr>
+            <th>사용여부</th>
+            <td>
+                <input type="radio" name="active" value="true" id="active_true">
+                <label for="active_true">사용</label>
+
+                <input type="radio" name="active" value="false" id="active_false">
+                <label for="active_true">미사용</label>
+            </td>
+        </tr>
+        <tr>
+            <th>게시판 ID</th>
+            <td>
+                <input type="text" name="bid">
+            </td>
+        </tr>
+        <tr>
+            <th>게시판 이름</th>
+            <td>
+                <input type="text" name="bName">
+            </td>
+        </tr>
+        <tr>
+            <th>한 페이지 당 게시글 수</th>
+            <td>
+                <input type="number" name="rowsPerPage" min="1">
+            </td>
+        </tr>
+        <tr>
+            <th>페이지 구간 갯수(PC)</th>
+            <td>
+                <input type="number" name="pageCountPc" min="1">
+            </td>
+        </tr>
+        <tr>
+            <th>페이지 구간 갯수(Mo)</th>
+            <td>
+                <input type="number" name="pageCountMobile" min="1">
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>답글 사용</th>
+            <td>
+                <input type="radio" name="useReply" value="true" id="useReply_true">
+                <label for="useReply_true">사용</label>
+
+                <input type="radio" name="useReply" value="false" id="useReply_false">
+                <label for="useReply_false">미사용</label>
+            </td>
+        </tr>
+        <tr>
+            <th>댓글 사용</th>
+            <td>
+                <input type="radio" name="userComment" value="true" id="userComment_true">
+                <label for="userComment_true">사용</label>
+
+                <input type="radio" name="userComment" value="false" id="userComment_false">
+                <label for="userComment_false">미사용</label>
+            </td>
+        </tr>
+        <tr>
+            <th>에디터</th>
+            <td>
+                <input type="radio" name="useEditor" value="true" id="useEditor_true">
+                <label for="useEditor_true">사용</label>
+
+                <input type="radio" name="useEditor" value="false" id="useEditor_false">
+                <label for="useEditor_false">미사용</label>
+            </td>
+        </tr>
+
+        <tr>
+            <th>이미지 첨부</th>
+            <td>
+                <input type="radio" name="useUploadImage" value="true" id="useUploadImage_true">
+                <label for="useUploadImage_true">사용</label>
+
+                <input type="radio" name="useUploadImage" value="false" id="useUploadImage_false">
+                <label for="useUploadImage_false">미사용</label>
+            </td>
+        </tr>
+
+        <tr>
+            <th>파일 첨부</th>
+            <td>
+                <input type="radio" name="useUploadFile" value="true" id="useUploadFile_true">
+                <label for="useUploadFile_true">사용</label>
+
+                <input type="radio" name="useUploadFile" value="false" id="useUploadFile_false">
+                <label for="useUploadFile_false">사용</label>
+            </td>
+        </tr>
+
+        <tr>
+            <th>글작성 후 이동</th>
+            <td>
+                <input type="radio" name="locationAfterWriting" value="list" id="locationAfterWriting_list">
+                <label for="locationAfterWriting_list">글목록</label>
+
+                <input type="radio" name="locationAfterWriting" value="view" id="locationAfterWriting_view">
+                <label for="locationAfterWriting_view">글보기</label>
+            </td>
+        </tr>
+
+        <tr>
+            <th>스킨</th>
+            <td>
+                <input type="radio" name="skin" value="default" id="skin_default">
+                <label for="skin_default">기본(default)</label>
+
+                <input type="radio" name="skin" value="gallery" id="skin_gallery">
+                <label for="skin_gallery">갤러리(gallery)</label>
+
+                <input type="radio" name="skin" value="qna" id="skin_qna">
+                <label for="skin_qna">질문과 답변(QnA)</label>
+
+                <input type="radio" name="skin" value="review" id="skin_review">
+                <label for="skin_review">후기(review)</label>
+
+                <input type="radio" name="skin" value="blog" id="skin_blog">
+                <label for="skin_blog">블로그(blog)</label>
+            </td>
+        </tr>
+
+    </table>
+
+    <h2>게시판 분류</h2>
+    <table class="table_cols mb30">
+        <tr>
+            <th>분류</th>
+            <td>
+                <textarea name="category" placeholder="여러 분류는 줄개행하여 입력"></textarea>
+            </td>
+        </tr>
+
+    </table>
+
+    <h2>게시판 상단</h2>
+    <table class="table_cols mb30">
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea name="htmlTop" id="html_top"></textarea>
+            </td>
+        </tr>
+    </table>
+
+    <h2>게시판 하단</h2>
+    <table class="table_cols mb30">
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea name="htmlBottom" id="html_bottom"></textarea>
+            </td>
+        </tr>
+    </table>
+
+</th:block>
+</html>

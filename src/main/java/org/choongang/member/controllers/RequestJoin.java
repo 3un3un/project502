@@ -9,10 +9,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.UUID;
+
 
 // 커맨드 객체
 @Data
 public class RequestJoin {
+
+    private String gid = UUID.randomUUID().toString(); // UNIQUE ID 만들기
+
     @NotBlank @Email
     private String email;
 

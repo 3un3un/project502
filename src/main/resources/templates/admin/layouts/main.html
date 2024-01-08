@@ -3,6 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <!-- 프로필 -->
+    <meta name="_csrf" th:content="${_csrf.token}"> <!-- 토큰 -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"> <!-- 요청 보낼 때마다 싣기-->
+
     <meta th:if="${siteConfig.siteDescription != null}" name="description" th:content="${siteConfig.siteDescription}">
     <meta th:if="${siteConfig.siteKeywords != null}" name="keywords" th:content="${siteConfig.siteKeywords}">
     <title>
