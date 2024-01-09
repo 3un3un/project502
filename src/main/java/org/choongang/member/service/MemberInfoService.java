@@ -2,6 +2,8 @@ package org.choongang.member.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.file.entities.FileInfo;
+import org.choongang.file.service.FileInfoService;
 import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.MemberRepository;
@@ -21,6 +23,7 @@ import java.util.List;
 public class
 MemberInfoService implements UserDetailsService {
     private final MemberRepository memberRepository;
+    private final FileInfoService fileInfoService;
 
 
     // 회원 정보 조회 (인증할 때 등)
@@ -38,6 +41,15 @@ MemberInfoService implements UserDetailsService {
                     .map(s -> new SimpleGrantedAuthority(s.getAuthority().name())) // 권한을 문자열로
                     .toList(); // 리스트로 변환
         }
+
+        /* 프로필 이미지 처리 S */
+        List<FileInfo> files = fileInfoService.getListDone(member.getGid());
+        if(files != null && !files.isEmpty()) {
+            member.setProfileImage(files.get(0));
+        }
+        /* 프로필 이미지 처리 E */
+
+
 
         // 반환하면 알아서 로그인
         return MemberInfo.builder()

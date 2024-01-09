@@ -3,6 +3,7 @@ package org.choongang.member.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.choongang.file.service.FileUploadService;
 import org.choongang.member.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
@@ -23,6 +24,7 @@ public class JoinService {
     private final JoinValidator validator;
     private final PasswordEncoder encoder;
     private final AuthoritiesRepository authoritiesRepository;
+    private final FileUploadService uploadService;
 
 
 
@@ -57,12 +59,13 @@ public class JoinService {
         authorities.setAuthority(Authority.USER);
         authoritiesRepository.saveAndFlush(authorities);
 
+        // 파일 업로드 완료 처리
+        uploadService.processDone(member.getGid());
+
     }
 
     // 엔티티일 때
     public void process(Member member) {
         memberRepository.saveAndFlush(member);
-
-
     }
 }
