@@ -2,9 +2,9 @@ package org.choongang.admin.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.transaction.Transactional;
-import org.choongang.admin.config.controllers.BasicConfig;
-import org.choongang.admin.config.service.ConfigInfoService;
-import org.choongang.admin.config.service.ConfigSaveService;
+import org.choongang.admin.board.controller.config.controllers.BasicConfig;
+import org.choongang.admin.board.controller.config.service.ConfigInfoService;
+import org.choongang.admin.board.controller.config.service.ConfigSaveService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

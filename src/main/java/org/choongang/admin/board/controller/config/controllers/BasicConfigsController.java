@@ -1,8 +1,8 @@
-package org.choongang.admin.config.controllers;
+package org.choongang.admin.board.controller.config.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.config.service.ConfigInfoService;
-import org.choongang.admin.config.service.ConfigSaveService;
+import org.choongang.admin.board.controller.config.service.ConfigInfoService;
+import org.choongang.admin.board.controller.config.service.ConfigSaveService;
 import org.choongang.commons.ExceptionProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

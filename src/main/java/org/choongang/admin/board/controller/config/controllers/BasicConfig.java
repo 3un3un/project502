@@ -1,4 +1,4 @@
-package org.choongang.admin.config.controllers;
+package org.choongang.admin.board.controller.config.controllers;
 
 import lombok.Data;
 
