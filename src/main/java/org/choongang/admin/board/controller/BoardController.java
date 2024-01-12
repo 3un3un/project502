@@ -1,11 +1,13 @@
-package org.choongang.admin.board;
+package org.choongang.admin.board.controller;
 
+import jakarta.validation.Valid;
 import org.choongang.admin.menus.Menu;
 import org.choongang.admin.menus.MenuDetail;
 import org.choongang.commons.ExceptionProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +48,7 @@ public class BoardController implements ExceptionProcessor {
      * @return
      */
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(@ModelAttribute Model model) {
         commonProcess("add", model);
 
         return "admin/board/add";
@@ -58,7 +60,14 @@ public class BoardController implements ExceptionProcessor {
      * @return
      */
     @PostMapping("/save")
-    public String save() {
+    public String save(@Valid RequestBoardConfig config, Errors errors, Model model) {
+        String mode = config.getMode();
+
+        commonProcess(mode, model);
+
+        if (errors.hasErrors()) {
+            return "admin/board/" + mode;
+        }
 
         return "redirect:/admin/board";
     }
@@ -100,6 +109,7 @@ public class BoardController implements ExceptionProcessor {
         List<String> addScript = new ArrayList<>();
         if(mode.equals("add") || mode.equals("edit")) { // 게시판 등록 또는 수정일 때
             addCommonScript.add("ckeditor5/ckeditor");
+            addCommonScript.add("fileManager");
             addScript.add("board/form");
         }
 

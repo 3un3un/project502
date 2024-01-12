@@ -1,11 +1,11 @@
-package org.choongang.admin.config.service;
+package org.choongang.admin.board.controller.config.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.config.entities.Configs;
-import org.choongang.admin.config.repositories.ConfigsRepository;
+import org.choongang.admin.board.controller.config.entities.Configs;
+import org.choongang.admin.board.controller.config.repositories.ConfigsRepository;
 import org.springframework.stereotype.Service;
 
 

@@ -40,4 +40,19 @@ commonLib.ajaxLoad = function(method, url, params, responseType) {
 
     });
 
+};
+
+/**
+이지윅 에디터 로드
+*/
+commonLib.loadEditor = function(id, height) {
+    if (!id) {
+        return;
+    }
+    height = height || 450;
+
+    // ClassicEditor  ??
+    return ClassicEditor.create(document.getElementById(id), {
+        height
+    });
 }

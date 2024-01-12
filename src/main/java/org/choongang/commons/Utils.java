@@ -3,7 +3,7 @@ package org.choongang.commons;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.config.controllers.BasicConfig;
+import org.choongang.admin.board.controller.config.controllers.BasicConfig;
 import org.choongang.file.service.FileInfoService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -144,6 +144,19 @@ public class Utils {
 
     public String printThumb(long seq, int width, int height) {
         return printThumb(seq, width, height, null);
+    }
+
+
+    /**
+     * 0이하 정수인 경우 1이상 정수로 대체
+     * @param num
+     * @param replace
+     * @return
+     */
+    // 음수일 때 특정 양수로 변환하기
+    static public int onlyPositiveNumber(int num, int replace){
+        return num < 1 ? replace : num;
+
     }
 
 }

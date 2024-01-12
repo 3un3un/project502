@@ -1,8 +1,8 @@
 package org.choongang.commons;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.config.controllers.BasicConfig;
-import org.choongang.admin.config.service.ConfigInfoService;
+import org.choongang.admin.board.controller.config.controllers.BasicConfig;
+import org.choongang.admin.board.controller.config.service.ConfigInfoService;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
