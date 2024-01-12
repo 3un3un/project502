@@ -19,7 +19,7 @@ public class QFileInfo extends EntityPathBase<FileInfo> {
 
     public static final QFileInfo fileInfo = new QFileInfo("fileInfo");
 
-    public final org.choongang.commons.entites.QBaseMember _super = new org.choongang.commons.entites.QBaseMember(this);
+    public final org.choongang.commons.entities.QBaseMember _super = new org.choongang.commons.entities.QBaseMember(this);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;

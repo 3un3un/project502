@@ -3,13 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <!-- 프로필 -->
-    <meta name="_csrf" th:content="${_csrf.token}"> <!-- 토큰 -->
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"> <!-- 요청 보낼 때마다 싣기-->
-
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <meta th:if="${siteConfig.siteDescription != null}" name="description" th:content="${siteConfig.siteDescription}">
     <meta th:if="${siteConfig.siteKeywords != null}" name="keywords" th:content="${siteConfig.siteKeywords}">
-
     <title>
         <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' - '}"></th:block>
         <th:block th:if="${siteConfig.siteTitle != null}" th:text="${siteConfig.siteTitle}"></th:block>
@@ -37,7 +34,6 @@
             th:src="@{/front/js/{file}.js?v={v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
 
     <th:block layout:fragment="addScript"></th:block>
-
 </head>
 <body>
     <header th:replace="~{front/outlines/header::common}"></header>

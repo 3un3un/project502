@@ -20,7 +20,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final org.choongang.commons.entites.QBase _super = new org.choongang.commons.entites.QBase(this);
+    public final org.choongang.commons.entities.QBase _super = new org.choongang.commons.entities.QBase(this);
 
     public final ListPath<Authorities, QAuthorities> authorities = this.<Authorities, QAuthorities>createList("authorities", Authorities.class, QAuthorities.class, PathInits.DIRECT2);
 

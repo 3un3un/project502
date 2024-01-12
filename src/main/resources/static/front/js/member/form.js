@@ -1,6 +1,3 @@
-// 프로필 : 회원 가입, 회원 정보 수정 시에도 필요
-
-
 /**
 * 파일 업로 후 후속 처리 함수
 *
@@ -35,11 +32,10 @@ function callbackFileUpload(files) {
 
 /**
 * 파일 삭제 후 후속처리 함수
+*
 * @param seq : 파일 등록 번호
 */
-function callbackFileUpload(seq) {
-    const fileEl = document.getElementById(`file_${seq}`); // 템플릿 리터럴 : 변수를 직접 출력(seq)
+function callbackFileDelete(seq) {
+    const fileEl = document.getElementById(`file_${seq}`);
     fileEl.parentElement.removeChild(fileEl);
-
-
-    }
+}
