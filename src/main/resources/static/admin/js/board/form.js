@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", function() {  /*dd*/
+window.addEventListener("DOMContentLoaded", function() {
     const { loadEditor } = commonLib;
 
 
