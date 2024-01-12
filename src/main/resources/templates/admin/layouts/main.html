@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <!-- 프로필 -->
-    <meta name="_csrf" th:content="${_csrf.token}"> <!-- 토큰 -->
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"> <!-- 요청 보낼 때마다 싣기-->
-
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <meta th:if="${siteConfig.siteDescription != null}" name="description" th:content="${siteConfig.siteDescription}">
     <meta th:if="${siteConfig.siteKeywords != null}" name="keywords" th:content="${siteConfig.siteKeywords}">
     <title>
@@ -14,49 +12,39 @@
         <th:block th:if="${siteConfig.siteTitle != null}" th:text="${siteConfig.siteTitle}"></th:block>
     </title>
 
-    <!-- xeicon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-
-    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}
-    (v=${siteConfig.cssJsVersion})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}(v=${siteConfig.cssJsVersion})}">
     <link rel="stylesheet" type="text/css"
           th:each="cssFile : ${addCommonCss}"
           th:href="@{/common/css/{file}.css?v={v}(file=${cssFile}, v=${siteConfig.cssJsVersion})}">
 
-    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css?v={v}
-    (v=${siteConfig.cssJsVersion})}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css?v={v}(v=${siteConfig.cssJsVersion})}">
     <link rel="stylesheet" type="text/css"
           th:each="cssFile : ${addCss}"
           th:href="@{/admin/css/{file}.css?v={v}(file=${cssFile}, v=${siteConfig.cssJsVersion})}">
 
     <th:block layout:fragment="addCss"></th:block>
 
-    <script th:src="@{/common/js/common.js?v={v}
-    (v=${siteConfig.cssJsVersion})}"></script>
+    <script th:src="@{/common/js/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>
     <script th:each="jsFile : ${addCommonScript}"
-            th:src="@{/common/js/{file}.js?v=${v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
+            th:src="@{/common/js/{file}.js?v={v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
 
-    <script th:src="@{/admin/js/common.js?v={v}
-    (v=${siteConfig.cssJsVersion})}"></script>
+    <script th:src="@{/admin/js/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>
     <script th:each="jsFile : ${addScript}"
-            th:src="@{/admin/js/{file}.js?v=${v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
+            th:src="@{/admin/js/{file}.js?v={v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
 
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body>
     <header th:replace="~{admin/outlines/header::common}"></header>
 
-<!--    <main layout:fragment="content"></main>-->
-    <!-- !!! -->
     <main>
         <aside th:replace="~{admin/outlines/_side::menus}"></aside>
         <section>
-            <!-- 없으면 x, 존재할 때만 노출 -->
             <nav th:replace="~{admin/outlines/_submenu::submenus}"></nav>
             <section layout:fragment="content"></section>
         </section>
     </main>
-    <!--<footer th:replace="~{admin/outlines/footer::common}"></footer>-->
     <iframe name="ifrmProcess" class="dn"></iframe>
 </body>
 </html>

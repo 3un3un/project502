@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{admin/layouts/main}">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/main}">
 
 <section layout:fragment="content">
     <div th:replace="~{admin/commons/_message::message}"></div>
     <h1>기본설정</h1>
-    <form name="frmSave" method="post" th:action="@{/admin/config}" autocomplete="off"
-    th:object="${basicConfig}">
+    <form name="frmSave" method="post" th:action="@{/admin/config}" autocomplete="off" th:object="${basicConfig}">
         <h2>사이트 설정</h2>
         <table class="table_cols mb30">
             <tr>
@@ -40,14 +39,11 @@
         <table class="table_cols mb30">
             <tr>
                 <th width="180">가로X세로</th>
-                    <td>
-                        <textarea name="thumbSize" th:field="*{thumbSize}"
-                                  placeholder="예) 150X150, 여러 개는 줄 개행하여 입력">
-                        </textarea>
-                    </td>
+                <td>
+                    <textarea name="thumbSize" th:field="*{thumbSize}" placeholder="예) 150X150, 여러개는 줄개행하여 입력"></textarea>
+                </td>
             </tr>
         </table>
-
 
         <h2>약관 설정</h2>
         <table class="table_cols">
@@ -57,17 +53,11 @@
                     <textarea name="joinTerms" th:field="*{joinTerms}"></textarea>
                 </td>
             </tr>
-
         </table>
         <div class="submit_btns">
             <button type="reset" class="btn">다시입력</button>
             <button type="submit" class="btn">저장하기</button>
-
         </div>
     </form>
-
 </section>
-
-
-
 </html>
