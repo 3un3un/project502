@@ -1,4 +1,4 @@
-package org.choongang.layer_popup;
+package org.choongang.commons.layer_popup;
 
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ExceptionProcessor;
