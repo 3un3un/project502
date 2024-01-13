@@ -60,9 +60,18 @@ public class SecurityConfig {
 
         /* 인가 설정 E - 접근 통제 */
 
+
+        /* 레이어 팝업 S */
         http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
+        /* 레이어 팝업 E */
+
+
+
 
         return http.build();
+
+
+
     }
 
     @Bean
